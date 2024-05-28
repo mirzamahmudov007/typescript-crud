@@ -1,0 +1,78 @@
+.login__wrapper {
+  min-height: 100vh;
+  background-image: url(bg.jpg);
+  background-color: #f5f5f7;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login__container {
+  background-color: white;
+  width: 500px;
+  margin-bottom: 100px;
+  padding: 2rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.login__container img {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+}
+.login__container h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  text-align: center;
+}
+.login__container .login_oneid {
+  cursor: pointer;
+  background-color: #053d91;
+  padding: 10px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+.login__container .login_oneid svg {
+  width: 200px;
+}
+
+.login__container form {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid #efef;
+}
+
+.login__container form button {
+  background: #053d91;
+  color: #fff;
+  display: inline-block;
+  outline: none;
+  border: none;
+  vertical-align: middle;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 0 30px;
+  height: 42px;
+  line-height: 42px;
+  font-size: 18px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.fil2 {
+  color: white !important;
+}
