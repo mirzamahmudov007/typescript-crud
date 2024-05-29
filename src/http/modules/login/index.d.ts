@@ -1,9 +1,9 @@
 export type CallbackResponse = {
   userInfo: {
-    id: string,
+    id: string
     full_name: string
     role: string
   }
-  accessToken: string
-  refreshToken: string
+  access_token: string
+  refresh_token: string
 }

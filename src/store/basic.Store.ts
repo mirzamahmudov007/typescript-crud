@@ -1,20 +1,20 @@
 import { makeAutoObservable } from 'mobx'
-import { setAuth, getAuth, clearAuth } from '@/utils/token'
+import { setUserInfo, getUserInfo, clearUserInfo } from '@/utils/token'
 import { CallbackResponse } from '@/http/modules/login/index.d'
 
 class BasicStore {
   constructor() {
     makeAutoObservable(this)
   }
-  baseAuth = getAuth()
+  baseUser = getUserInfo()
 
   login = (data: CallbackResponse) => {
-    this.baseAuth = data
-    setAuth(this.baseAuth)
+    this.baseUser = data
+    setUserInfo(this.baseUser)
   }
 
   logout = () => {
-    clearAuth()
+    clearUserInfo()
   }
 }
 

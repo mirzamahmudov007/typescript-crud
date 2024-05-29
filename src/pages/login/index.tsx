@@ -7,7 +7,7 @@ function LoginWrapper() {
   return (
     <div className="login__wrapper">
       <div className="login__container">
-        <h3>Yer Aksiya</h3>
+        <h3>Geo Smart</h3>
         <div className="login_oneid" onClick={loginOneId}>
           <OneIDSVG />
         </div>
