@@ -1,3 +1,4 @@
+import Ckeditor from '@/components/ckeditor/Ckeditor'
 import { Form, Select, Input, Space, Button } from 'antd'
 
 const initialValues = {
@@ -24,7 +25,8 @@ function ModalContent() {
       // labelCol={{ span: 10 }}
       wrapperCol={{ span: 24 }}
       labelAlign="left"
-      initialValues={initialValues}
+      initialValues={{}}
+      // initialValues={initialValues}
       autoComplete="off"
     >
       <div className="flex gap-4">
@@ -79,7 +81,7 @@ function ModalContent() {
         </Form.Item>
       </div>
       <div>
-        <img src="./bg-assets.jpg" />
+        <Ckeditor />
       </div>
       <Space className="d-flex my-2 justify-end w-full">
         <Button type="primary" htmlType="submit">
