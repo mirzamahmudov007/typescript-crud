@@ -17,6 +17,10 @@ const validation = {
 function ModalContent() {
   const [form] = Form.useForm()
 
+  const onSubmit = (e: any) => {
+    console.log(e)
+  }
+
   return (
     <Form
       layout="vertical"
@@ -26,6 +30,7 @@ function ModalContent() {
       wrapperCol={{ span: 24 }}
       labelAlign="left"
       initialValues={{}}
+      onFinish={onSubmit}
       // initialValues={initialValues}
       autoComplete="off"
     >
