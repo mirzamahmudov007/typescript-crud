@@ -1,5 +1,13 @@
 import { lazy } from 'react'
-import { AppstoreOutlined, ApartmentOutlined, SecurityScanOutlined, AimOutlined } from '@ant-design/icons'
+import {
+  AppstoreOutlined,
+  ApartmentOutlined,
+  SecurityScanOutlined,
+  AimOutlined,
+  FundProjectionScreenOutlined,
+  UserSwitchOutlined,
+  TeamOutlined
+} from '@ant-design/icons'
 
 export default [
   {
@@ -14,7 +22,7 @@ export default [
     path: '/projects',
     key: 'projects',
     label: 'Loyihalar',
-    icon: SecurityScanOutlined,
+    icon: FundProjectionScreenOutlined,
     component: lazy(() => import('@/pages/projects/Projects'))
   },
   {
@@ -29,14 +37,14 @@ export default [
     path: '/attendance',
     key: 'attendance',
     label: 'Davomat',
-    icon: ApartmentOutlined,
+    icon: UserSwitchOutlined,
     component: lazy(() => import('@/pages/attendance/Attendance'))
   },
   {
     path: '/users',
     key: 'users',
     label: 'Foydalanuchilar',
-    icon: SecurityScanOutlined,
+    icon: TeamOutlined,
     component: lazy(() => import('@/pages/users/Users'))
   }
   // {

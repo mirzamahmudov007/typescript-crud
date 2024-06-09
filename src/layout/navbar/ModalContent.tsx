@@ -26,7 +26,7 @@ function ModalContent() {
       layout="vertical"
       form={form}
       className="mt-6"
-      // labelCol={{ span: 10 }}
+      labelCol={{ span: 24 }}
       wrapperCol={{ span: 24 }}
       labelAlign="left"
       initialValues={{}}

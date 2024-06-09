@@ -86,19 +86,28 @@ const columns: ColumnsType<DataType> = [
     render: (t) => {
       if (t == 1) {
         return (
-          <div className="flex gap-2">
-            <Button className="bg-blue-200  py-0 px-2 text-[14px]">Bajarish</Button>
-            <Button className="bg-red-200  py-0 px-2 text-[14px]">Bekorqilish</Button>
+          <div className="flex gap-2 ">
+            <Button size="small" className="bg-blue-200  py-0 px-2 text-[14px]">
+              Bajarish
+            </Button>
+            <Button size="small" type="link" className="py-0 px-2 text-[14px]">
+              Yo'naltish
+            </Button>
+            <Button size="small" className="bg-red-200  py-0 px-2 text-[14px]">
+              Bekorqilish
+            </Button>
           </div>
         )
       }
       if (t == 3) {
         return (
           <div className="flex gap-2">
-            <Button type="link" className="py-0 px-2 text-[14px]">
+            <Button size="small" type="link" className="py-0 px-2 text-[14px]">
               Yo'naltish
             </Button>
-            <Button className="bg-green-200 white py-0 px-2 text-[14px]">Yakunlash</Button>
+            <Button size="small" className="bg-red-700 text-white py-0 px-2 text-[14px]">
+              Yakunlash
+            </Button>
           </div>
         )
       }
@@ -106,8 +115,12 @@ const columns: ColumnsType<DataType> = [
       if (t == 2) {
         return (
           <div className="flex gap-2">
-            <Button className="bg-red-100 py-0 px-2 text-[14px]">Aktivlash</Button>
-            <Button className="bg-yellow-100 py-0 px-2 text-[14px]">Yakunlash</Button>
+            <Button size="small" className="bg-red-100 py-0 px-2 text-[14px]">
+              Aktivlash
+            </Button>
+            <Button size="small" className="bg-red-700 text-white py-0 px-2 text-[14px]">
+              Yakunlash
+            </Button>
           </div>
         )
       }

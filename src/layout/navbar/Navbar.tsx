@@ -22,10 +22,6 @@ function Navbar({ width }: IHeaderProps) {
     setIsModalOpen(true)
   }
 
-  const handleOk = () => {
-    setIsModalOpen(false)
-  }
-
   const handleCancel = () => {
     setIsModalOpen(false)
   }
@@ -33,7 +29,7 @@ function Navbar({ width }: IHeaderProps) {
     <div className="flex justify-between items-center relative w-full text-black text-opacity-60">
       <NavbarBread width={width} />
 
-      <Modal width={900} title="Topshiriq" footer={false} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      <Modal width={900} title="Topshiriq" footer={false} open={isModalOpen} onCancel={handleCancel}>
         <ModalContent />
       </Modal>
       <Button type="primary" onClick={showModal}>
