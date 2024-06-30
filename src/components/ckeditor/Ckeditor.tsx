@@ -3,9 +3,15 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 
 // import { ClassicEditor } from '@ckeditor/ckeditor5-editor-classic'
 
-function Ckeditor() {
+type PropsCkeditorType = {
+  name: string
+  onChange: Function
+}
+
+function Ckeditor({ name }: PropsCkeditorType) {
   return (
     <CKEditor
+      name={name}
       editor={ClassicEditor}
       data="<p>Hello from the first editor working with the context!</p>"
       onReady={(editor) => {

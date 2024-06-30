@@ -1,37 +1,28 @@
 import Ckeditor from '@/components/ckeditor/Ckeditor'
+import FAutoComplate from '@/components/form/FAutoComplate'
 import { Form, Select, Input, Space, Button } from 'antd'
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
 
-const initialValues = {
-  name: '',
-  description: '',
-  code: '',
-  status: false
-}
-
-const validation = {
-  name: 'Iltimos name kiriting',
-  description: "Iltimos to'liqroq ma'lumot kiriting",
-  code: 'Iltimos code kiring'
-}
+const initialValues = {}
 
 function ModalContent() {
-  const [form] = Form.useForm()
-
-  const onSubmit = (e: any) => {
-    console.log(e)
-  }
+  const formik = useFormik({
+    initialValues,
+    validationSchema: Yup.object({}),
+    onSubmit: (values, { resetForm }) => {
+      console.log(values)
+      // resetForm()
+    }
+  })
 
   return (
     <Form
       layout="vertical"
-      form={form}
       className="mt-6"
       labelCol={{ span: 24 }}
       wrapperCol={{ span: 24 }}
       labelAlign="left"
-      initialValues={{}}
-      onFinish={onSubmit}
-      // initialValues={initialValues}
       autoComplete="off"
     >
       <div className="flex gap-4">
@@ -39,24 +30,32 @@ function ModalContent() {
           <Input value="NM-05" disabled={true} />
         </Form.Item>
         <Form.Item className="w-full" label="Topshiriq beruvchi" name="name">
-          <Select defaultValue="lucy" options={[{ value: 'lucy', label: 'Sardor Omonov' }]} />
+          <FAutoComplate
+            placeholder="Users"
+            url="/users"
+            onChange={(user: string) => formik.setFieldValue('user', user)}
+            // value={v.region}
+            formatOptions={(e) => e.regions.map((i: any) => ({ label: i.name, value: i._id }))}
+          />
         </Form.Item>
         <Form.Item className="w-full" label="Muhumligi" name="code">
           <Select
+            onChange={formik.handleChange}
             options={[
-              { value: 'lucy', label: 'Oddiy' },
-              { value: 'lucy', label: "O'rta" },
-              { value: 'lucy', label: 'Muhum' },
-              { value: 'lucy', label: "O'ta muhum" }
+              { value: 'easy', label: 'Oddiy' },
+              { value: 'middle', label: "O'rta" },
+              { value: 'ex', label: 'Muhum' },
+              { value: 'exx', label: "O'ta muhum" }
             ]}
           />
         </Form.Item>
         <Form.Item className="w-full" label="Turi" name="code">
           <Select
+            onChange={formik.handleChange}
             options={[
-              { value: 'lucy', label: 'Xato' },
-              { value: 'lucy', label: "Qo'shimcha" },
-              { value: 'lucy', label: 'Yangi' }
+              { value: 'bug', label: 'Xato' },
+              { value: 'middle', label: "Qo'shimcha" },
+              { value: 'feature', label: 'Yangi' }
             ]}
           />
         </Form.Item>
@@ -64,29 +63,42 @@ function ModalContent() {
 
       <div className="flex gap-4">
         <Form.Item className="w-full" label="Topshiriq mazmuni">
-          <Input value="Yer hisobotta yangi qo;shimcha qo;shish" />
+          <Input value="" onChange={formik.handleChange} />
         </Form.Item>
         <Form.Item className="w-full" label="Loyiha" name="code">
-          <Select
-            options={[
-              { value: 'lucy', label: 'Yer elektron' },
-              { value: 'lucy', label: 'Yer nazorat' },
-              { value: 'lucy', label: 'Yer hisobot' }
-            ]}
+          <FAutoComplate
+            placeholder="Loyihalar"
+            url="/projects"
+            onChange={(p: string) => formik.setFieldValue('user', p)}
+            // value={v.region}
+            formatOptions={(e) => e.regions.map((i: any) => ({ label: i.name, value: i._id }))}
           />
         </Form.Item>
       </div>
 
       <div className="flex gap-4">
         <Form.Item className="w-full" label="Asosiy ijrochi" name="code">
-          <Select options={[{ value: 'lucy', label: 'Solijon Muhammad Ali' }]} />
+          <FAutoComplate
+            placeholder="Asosiy ijrochi"
+            url="/users"
+            onChange={(user: string) => formik.setFieldValue('user', user)}
+            // value={v.region}
+            formatOptions={(e) => e.regions.map((i: any) => ({ label: i.name, value: i._id }))}
+          />
         </Form.Item>
         <Form.Item className="w-full" label="Yordamchi ijrochi" name="code">
-          <Select options={[{ value: 'lucy', label: 'Solijon Muhammad Ali' }]} />
+          <FAutoComplate
+            placeholder="Yordamchi ijrochilar"
+            url="/users"
+            onChange={(user: string) => formik.setFieldValue('user', user)}
+            // value={v.region}
+            formatOptions={(e) => e.regions.map((i: any) => ({ label: i.name, value: i._id }))}
+            mode="multiple"
+          />
         </Form.Item>
       </div>
       <div>
-        <Ckeditor />
+        <Ckeditor name="main" onChange={formik.handleChange} />
       </div>
       <Space className="d-flex my-2 justify-end w-full">
         <Button type="primary" htmlType="submit">
