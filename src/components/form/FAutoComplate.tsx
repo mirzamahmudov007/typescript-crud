@@ -29,7 +29,6 @@ function FAutoComplate({ url = '/settings/regions', params = {}, formatOptions =
     <Select
       showSearch
       loading={loading}
-      style={{ minWidth: 140, maxWidth: 140 }}
       filterOption={(input: string, option: any) => option.label.toLowerCase().includes(input.toLowerCase())}
       options={options}
       {...props}
