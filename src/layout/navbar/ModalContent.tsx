@@ -99,7 +99,7 @@ function ModalContent() {
       <div className="flex gap-4">
         <Form.Item className="w-full" label="Asosiy ijrochi" name="main_user">
           <FAutoComplate
-            placeholder=""
+            placeholder="Users"
             url="/users"
             onChange={(user: string) => formik.setFieldValue('main_user', user)}
             value={v.main_user}
