@@ -1,10 +1,20 @@
 import Ckeditor from '@/components/ckeditor/Ckeditor'
 import FAutoComplate from '@/components/form/FAutoComplate'
+import { createTask } from '@/http'
 import { Form, Select, Input, Space, Button } from 'antd'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
-const initialValues = {}
+const initialValues = {
+  title: '',
+  description: '',
+  importance: 'LOW',
+  project_id: '',
+  type: 'BUG',
+  main_user: '',
+  assistants: [],
+  assigner: ''
+}
 
 function ModalContent() {
   const formik = useFormik({
@@ -12,9 +22,14 @@ function ModalContent() {
     validationSchema: Yup.object({}),
     onSubmit: (values, { resetForm }) => {
       console.log(values)
+      createTask(values).then(() => {
+        resetForm()
+      })
       // resetForm()
     }
   })
+
+  const v = formik.values
 
   return (
     <Form
@@ -24,75 +39,80 @@ function ModalContent() {
       wrapperCol={{ span: 24 }}
       labelAlign="left"
       autoComplete="off"
+      onFinish={formik.submitForm}
     >
       <div className="flex gap-4">
         <Form.Item className="w-full" label="Raqami">
           <Input value="NM-05" disabled={true} />
         </Form.Item>
-        <Form.Item className="w-full" label="Topshiriq beruvchi" name="name">
+        <Form.Item className="w-full" label="Topshiriq beruvchi" name="assigner">
           <FAutoComplate
             placeholder="Users"
             url="/users"
-            onChange={(user: string) => formik.setFieldValue('user', user)}
-            // value={v.region}
-            formatOptions={(e) => e.regions.map((i: any) => ({ label: i.name, value: i._id }))}
+            onChange={(user: string) => formik.setFieldValue('assigner', user)}
+            value={v.assigner}
+            formatOptions={(e) => e.usersList.map((i: any) => ({ label: i.fullName, value: i.id }))}
           />
         </Form.Item>
-        <Form.Item className="w-full" label="Muhumligi" name="code">
+        <Form.Item className="w-full" label="Muhumligi" name="importance">
           <Select
-            onChange={formik.handleChange}
+            placeholder="Muhumligi"
+            onChange={(e) => formik.setFieldValue('importance', e)}
             options={[
-              { value: 'easy', label: 'Oddiy' },
-              { value: 'middle', label: "O'rta" },
-              { value: 'ex', label: 'Muhum' },
-              { value: 'exx', label: "O'ta muhum" }
+              { value: 'LOW', label: 'Oddiy' },
+              { value: 'MEDIUM', label: "O'rta" },
+              { value: 'HIGH', label: 'Muhum' },
+              { value: 'VERY_HIGH', label: "O'ta muhum" }
             ]}
+            value={v.importance}
           />
         </Form.Item>
-        <Form.Item className="w-full" label="Turi" name="code">
+        <Form.Item className="w-full" label="Turi" name="type">
           <Select
+            placeholder="Turi"
             onChange={formik.handleChange}
             options={[
-              { value: 'bug', label: 'Xato' },
-              { value: 'middle', label: "Qo'shimcha" },
-              { value: 'feature', label: 'Yangi' }
+              { value: 'BUG', label: 'Xato' },
+              { value: 'CHANGE', label: "Qo'shimcha" },
+              { value: 'FEATURE', label: 'Yangi' }
             ]}
+            value={v.type}
           />
         </Form.Item>
       </div>
 
       <div className="flex gap-4">
         <Form.Item className="w-full" label="Topshiriq mazmuni">
-          <Input value="" onChange={formik.handleChange} />
+          <Input name="title" value={v.title} onChange={formik.handleChange} />
         </Form.Item>
-        <Form.Item className="w-full" label="Loyiha" name="code">
+        <Form.Item className="w-full" label="Loyiha" name="project_id">
           <FAutoComplate
             placeholder="Loyihalar"
             url="/projects"
-            onChange={(p: string) => formik.setFieldValue('user', p)}
-            // value={v.region}
-            formatOptions={(e) => e.regions.map((i: any) => ({ label: i.name, value: i._id }))}
+            onChange={(p: string) => formik.setFieldValue('project_id', p)}
+            value={v.project_id}
+            formatOptions={(e) => e.projectsList.map((i: any) => ({ label: i.title, value: i.id }))}
           />
         </Form.Item>
       </div>
 
       <div className="flex gap-4">
-        <Form.Item className="w-full" label="Asosiy ijrochi" name="code">
+        <Form.Item className="w-full" label="Asosiy ijrochi" name="main_user">
           <FAutoComplate
-            placeholder="Asosiy ijrochi"
+            placeholder=""
             url="/users"
-            onChange={(user: string) => formik.setFieldValue('user', user)}
-            // value={v.region}
-            formatOptions={(e) => e.regions.map((i: any) => ({ label: i.name, value: i._id }))}
+            onChange={(user: string) => formik.setFieldValue('main_user', user)}
+            value={v.main_user}
+            formatOptions={(e) => e.usersList.map((i: any) => ({ label: i.fullName, value: i.id }))}
           />
         </Form.Item>
-        <Form.Item className="w-full" label="Yordamchi ijrochi" name="code">
+        <Form.Item className="w-full" label="Yordamchi ijrochi" name="assistants">
           <FAutoComplate
             placeholder="Yordamchi ijrochilar"
             url="/users"
-            onChange={(user: string) => formik.setFieldValue('user', user)}
-            // value={v.region}
-            formatOptions={(e) => e.regions.map((i: any) => ({ label: i.name, value: i._id }))}
+            onChange={(user: string) => formik.setFieldValue('assistants', user)}
+            value={v.assistants}
+            formatOptions={(e) => e.usersList.map((i: any) => ({ label: i.fullName, value: i._id }))}
             mode="multiple"
           />
         </Form.Item>
